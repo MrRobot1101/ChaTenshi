@@ -7,6 +7,28 @@
     <title>Java</title>
 </head>
 <body>
+<script src="share.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded'), () =>{
+    const socket = io();
+    const from = document.getElementById('form');
+    const input = document.getElementById('input');
+    from.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      if(input.value){
+        socket.emit('mensage', (msg) =>{
+          const item = document.createElement('li');
+          item.textContent = msg;
+          document.getElementById('messages').appendChild(item);
+          
+        })
+      }
+    });
+  }
+</script>
+<ul id="messages"></ul>
+<form action="" id="form"></form>
+<input autocomplete="off" id="input"><button>enviar</button>
 <!-- <h1>Compras Online</h1>
     <section>
         <input type="number" style="width: 45px;" id="presupuesto">
@@ -24,7 +46,7 @@
     <div id="im">
    
     </div> -->
-    <div id="chatBox"></div>
+    <!-- <div id="chatBox"></div>
     <input type="text" id="messageInput" placeholder="mensaje">
     <button id="sendButton">mensaje</button>
     </body>
@@ -46,7 +68,11 @@
         worker.port.postMessage(message);
         messageInput.value='';
       }
-    });
-    </script>
+    }); -->
+    
+    
+</body>
+  
+
 <!-- <script src="java.js"></script> -->
 </html>
