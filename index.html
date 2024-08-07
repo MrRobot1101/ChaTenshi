@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java</title>
+</head>
+<body>
+<!-- <h1>Compras Online</h1>
+    <section>
+        <input type="number" style="width: 45px;" id="presupuesto">
+        <button onclick="enviar()">enviar</button>
+        <p id="bille"></p>
+    </section>
+    <input multiple list="product" required size="14" id="compra">
+    <button onclick="calculo()">calcular</button>
+    <p id="result">suma</p>
+    <p id="show"></p> -->
+    
+<!--     
+    <input type="number" id="msj" placeholder="numero">
+    <button id="chat" onclick="chat()">send</button>
+    <div id="im">
+   
+    </div> -->
+    <div id="chatBox"></div>
+    <input type="text" id="messageInput" placeholder="mensaje">
+    <button id="sendButton">mensaje</button>
+    </body>
+    <script>
+    const worker = new SharedWorker('share.js');
+      worker.port.start();
+    const chatBox = document.getElementById('chatBox');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    
+    worker.port.onmessage = (event) => {
+      const message = event.data;
+      chatBox.innerHTML += `<div>${message}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    };
+    sendButton.addEventListener('click', () =>{
+      const message = messageInput.value.trim();
+      if(message){
+        worker.port.postMessage(message);
+        messageInput.value='';
+      }
+    });
+    </script>
+<!-- <script src="java.js"></script> -->
+</html>
